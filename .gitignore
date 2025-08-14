@@ -73,3 +73,7 @@ tmp/
 temp/
 *.tmp
 
+large_data_directory/
+*.csv
+*.parquet
+*.h5
