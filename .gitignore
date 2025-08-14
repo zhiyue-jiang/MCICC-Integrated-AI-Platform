@@ -77,3 +77,4 @@ large_data_directory/
 *.csv
 *.parquet
 *.h5
+biomni_data/
