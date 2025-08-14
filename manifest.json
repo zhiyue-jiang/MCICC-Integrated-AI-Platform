@@ -1,0 +1,636 @@
+{
+  "version": 1,
+  "locale": "en_US.UTF-8",
+  "metadata": {
+    "appmode": "python-shiny",
+    "entrypoint": "app"
+  },
+  "python": {
+    "version": "3.9.19",
+    "package_manager": {
+      "name": "pip",
+      "version": "25.2",
+      "package_file": "requirements.txt"
+    }
+  },
+  "files": {
+    "requirements.txt": {
+      "checksum": "cfe2cbf46c092e4cb7a0a999ccd131c5"
+    },
+    ".gitignore": {
+      "checksum": "a967dd76e8b4b16fb4ec4a45661c02fd"
+    },
+    ".ipynb_checkpoints/app-checkpoint.py": {
+      "checksum": "715e6cbd36d334a309762aeb986d7191"
+    },
+    ".ipynb_checkpoints/biomni_session-checkpoint.py": {
+      "checksum": "8ee188adf839f1044adf45465f37c7e9"
+    },
+    ".ipynb_checkpoints/requirements-checkpoint.txt": {
+      "checksum": "cfe2cbf46c092e4cb7a0a999ccd131c5"
+    },
+    "Biomni/.env.example": {
+      "checksum": "155802e23c2f5d7e62411f6f91bb7df5"
+    },
+    "Biomni/.gitignore": {
+      "checksum": "37a91607d1d5499dfd7a76225b0013c5"
+    },
+    "Biomni/.pre-commit-config.yaml": {
+      "checksum": "caf6647a8505ef33dab454dd1ef5a28c"
+    },
+    "Biomni/CONTRIBUTION.md": {
+      "checksum": "8b36330242afb59cc67914d1250ea5e0"
+    },
+    "Biomni/DETAILS.md": {
+      "checksum": "b2d83da5b81e0fb841e321e92b68b7cf"
+    },
+    "Biomni/LICENSE": {
+      "checksum": "86d3f3a95c324c9479bd8986968f4327"
+    },
+    "Biomni/MANIFEST.in": {
+      "checksum": "fdf7dc15a01caeb7feed85259f61b111"
+    },
+    "Biomni/README.md": {
+      "checksum": "58b7804cb52ca19d0334a7d6d741b1ea"
+    },
+    "Biomni/biomni/__init__.py": {
+      "checksum": "963204218334470fcc772bb554b42ebc"
+    },
+    "Biomni/biomni/agent/__init__.py": {
+      "checksum": "4e0844bef068bbbd49f90af9acdac1d0"
+    },
+    "Biomni/biomni/agent/a1.py": {
+      "checksum": "71a3d2b6fef6057068d6c3683d0a0f6b"
+    },
+    "Biomni/biomni/agent/env_collection.py": {
+      "checksum": "9e903b1c7d04f10154c8939339cdda66"
+    },
+    "Biomni/biomni/agent/qa_llm.py": {
+      "checksum": "49fb8cd75a9f2db6ba7b432794aff163"
+    },
+    "Biomni/biomni/agent/react.py": {
+      "checksum": "2ac97dff3af074703d40ad9e51612e3c"
+    },
+    "Biomni/biomni/biorxiv_scripts/extract_biorxiv_tasks.py": {
+      "checksum": "d458573f3e1d7f1445b14487f815a22f"
+    },
+    "Biomni/biomni/biorxiv_scripts/generate_function.py": {
+      "checksum": "200aff181da6104e837b3ee51a76b10f"
+    },
+    "Biomni/biomni/biorxiv_scripts/generation_tools_all_subjects.py": {
+      "checksum": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "Biomni/biomni/biorxiv_scripts/process_all_subjects.py": {
+      "checksum": "b4d85a963d8e7f0ea4a4ee4a948f7bec"
+    },
+    "Biomni/biomni/env_desc.py": {
+      "checksum": "0c9fd29d85d17ea9b4cb5f38a8c2da86"
+    },
+    "Biomni/biomni/llm.py": {
+      "checksum": "2f6aab6ed626ada50e2d06ddcb907c2e"
+    },
+    "Biomni/biomni/model/__init__.py": {
+      "checksum": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "Biomni/biomni/model/retriever.py": {
+      "checksum": "9115cfdaaa39a3a8042f30de6e327d06"
+    },
+    "Biomni/biomni/task/__init__.py": {
+      "checksum": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "Biomni/biomni/task/base_task.py": {
+      "checksum": "91d78c0351cb1427e51cd78b40bafaa6"
+    },
+    "Biomni/biomni/task/hle.py": {
+      "checksum": "b521d9d42fc020b0f1d688380964d1cb"
+    },
+    "Biomni/biomni/task/lab_bench.py": {
+      "checksum": "1496a34d2e798473a48bfe70c9169cce"
+    },
+    "Biomni/biomni/tool/__init__.py": {
+      "checksum": "7e92085de7be2b79b710942f29d65376"
+    },
+    "Biomni/biomni/tool/biochemistry.py": {
+      "checksum": "943494813dc94be5a9c05dbc4c6b5ffa"
+    },
+    "Biomni/biomni/tool/bioengineering.py": {
+      "checksum": "73a620234988c5f2cd1ddd7829906444"
+    },
+    "Biomni/biomni/tool/biophysics.py": {
+      "checksum": "0a7d0f0508d61fe138325395372d2568"
+    },
+    "Biomni/biomni/tool/cancer_biology.py": {
+      "checksum": "9047d9f7c71ee7f4d575674ee33168af"
+    },
+    "Biomni/biomni/tool/cell_biology.py": {
+      "checksum": "2137f65630f5ab2e8343320be8d00231"
+    },
+    "Biomni/biomni/tool/database.py": {
+      "checksum": "93217c136ab38a97bbdd0da8e3764231"
+    },
+    "Biomni/biomni/tool/example_mcp_tools/pubmed_mcp.py": {
+      "checksum": "1fdbc268e56a6239972925ed3cae0e61"
+    },
+    "Biomni/biomni/tool/genetics.py": {
+      "checksum": "345fb69ab7dd2a64bb68628fdea0d7ff"
+    },
+    "Biomni/biomni/tool/genomics.py": {
+      "checksum": "f12c6aa0d4077b1bb934802fea5afec5"
+    },
+    "Biomni/biomni/tool/immunology.py": {
+      "checksum": "99f346b124902eaafe3aad90c4088a30"
+    },
+    "Biomni/biomni/tool/literature.py": {
+      "checksum": "59daa1e8ac9ebbf0db7030bd32520ea7"
+    },
+    "Biomni/biomni/tool/microbiology.py": {
+      "checksum": "bc06115267b08bcd373d559f8465b83c"
+    },
+    "Biomni/biomni/tool/molecular_biology.py": {
+      "checksum": "d55a8022ca48bb106dfc680c9c46eafe"
+    },
+    "Biomni/biomni/tool/pathology.py": {
+      "checksum": "572de6af971542347c3df85d0af18e09"
+    },
+    "Biomni/biomni/tool/pharmacology.py": {
+      "checksum": "a17a5988da32ce25f1288ea7c6cdd191"
+    },
+    "Biomni/biomni/tool/physiology.py": {
+      "checksum": "e2700ffed504339e31384be836802962"
+    },
+    "Biomni/biomni/tool/schema_db/cbioportal.pkl": {
+      "checksum": "36b52023f36eb04398728bcebc1a15ef"
+    },
+    "Biomni/biomni/tool/schema_db/clinvar.pkl": {
+      "checksum": "5a2f2809df4e60e9f9aaa3353a235a12"
+    },
+    "Biomni/biomni/tool/schema_db/dbsnp.pkl": {
+      "checksum": "1a3f18534833a11528d599c409bc8916"
+    },
+    "Biomni/biomni/tool/schema_db/emdb.pkl": {
+      "checksum": "e76f8714d7636cda4f94b540450dda5a"
+    },
+    "Biomni/biomni/tool/schema_db/ensembl.pkl": {
+      "checksum": "029f3ced0e47c5fae43188929cee9cca"
+    },
+    "Biomni/biomni/tool/schema_db/geo.pkl": {
+      "checksum": "74e193196ebc81077f0fc7e259e67685"
+    },
+    "Biomni/biomni/tool/schema_db/gnomad.pkl": {
+      "checksum": "9f730b14115fc04ec4839be95dd2d8d2"
+    },
+    "Biomni/biomni/tool/schema_db/gtopdb.pkl": {
+      "checksum": "faf5dcd83dad1873951b48046239dcfa"
+    },
+    "Biomni/biomni/tool/schema_db/gwas_catalog.pkl": {
+      "checksum": "b30eb8f07061595a3ac2fe909a6c6193"
+    },
+    "Biomni/biomni/tool/schema_db/interpro.pkl": {
+      "checksum": "5a47b18b27bb72c1a9dd30806b0ad492"
+    },
+    "Biomni/biomni/tool/schema_db/iucn.pkl": {
+      "checksum": "199e4f2eba2906c6010379b5af4e34f2"
+    },
+    "Biomni/biomni/tool/schema_db/jaspar.pkl": {
+      "checksum": "1b08168057dc23f34c6648cd36bd4ac7"
+    },
+    "Biomni/biomni/tool/schema_db/kegg.pkl": {
+      "checksum": "5432935002f5760156ee1be7d13a08b8"
+    },
+    "Biomni/biomni/tool/schema_db/monarch.pkl": {
+      "checksum": "fb742de3c88dad1bf6110e6a4b368533"
+    },
+    "Biomni/biomni/tool/schema_db/mpd.pkl": {
+      "checksum": "efcc632e1b320c507a6c5f4e0a3d35fe"
+    },
+    "Biomni/biomni/tool/schema_db/openfda.pkl": {
+      "checksum": "626334f8b869f7b2d5653e9e7e28b72a"
+    },
+    "Biomni/biomni/tool/schema_db/opentarget.pkl": {
+      "checksum": "3a8094b6f4f328d7ab1896592dce566f"
+    },
+    "Biomni/biomni/tool/schema_db/opentarget_genetics.pkl": {
+      "checksum": "277258e03827d80104f223f6ac1c6a4e"
+    },
+    "Biomni/biomni/tool/schema_db/paleobiology.pkl": {
+      "checksum": "14c776d9ac1492b072f8d1d74e888e22"
+    },
+    "Biomni/biomni/tool/schema_db/pdb.pkl": {
+      "checksum": "d10fde93cfdd2d2e0949d1542c9c2887"
+    },
+    "Biomni/biomni/tool/schema_db/pride.pkl": {
+      "checksum": "7ffdbf9ba96958b195b4cc54d3522db3"
+    },
+    "Biomni/biomni/tool/schema_db/reactome.pkl": {
+      "checksum": "ba1b4515158e1e8de94a13443eac1576"
+    },
+    "Biomni/biomni/tool/schema_db/remap.pkl": {
+      "checksum": "b5c81205f61218a2d73ea7f2e7a25f54"
+    },
+    "Biomni/biomni/tool/schema_db/stringdb.pkl": {
+      "checksum": "40b4cdbadfd886b7926eb3c8318fb5bb"
+    },
+    "Biomni/biomni/tool/schema_db/ucsc.pkl": {
+      "checksum": "a8df95960dd85fde1be0c79071f50a98"
+    },
+    "Biomni/biomni/tool/schema_db/uniprot.pkl": {
+      "checksum": "5b46a8837ef26dd786bb67b58a586fef"
+    },
+    "Biomni/biomni/tool/schema_db/worms.pkl": {
+      "checksum": "d38887213bb97cb4cc02c74e3c128772"
+    },
+    "Biomni/biomni/tool/support_tools.py": {
+      "checksum": "33881bb00653d20b5012a42666d2ff45"
+    },
+    "Biomni/biomni/tool/synthetic_biology.py": {
+      "checksum": "839628c1d83a5328e03871ccc34daf81"
+    },
+    "Biomni/biomni/tool/systems_biology.py": {
+      "checksum": "b02876a3d77efaeb8b045c2066a51747"
+    },
+    "Biomni/biomni/tool/tool_description/biochemistry.py": {
+      "checksum": "77718c50190169d0487c6f2ee7baa490"
+    },
+    "Biomni/biomni/tool/tool_description/bioengineering.py": {
+      "checksum": "333d46229f98138d2132c5a2121bb339"
+    },
+    "Biomni/biomni/tool/tool_description/biophysics.py": {
+      "checksum": "f2c804af5e6a1ea0ea97bae48e483ca5"
+    },
+    "Biomni/biomni/tool/tool_description/cancer_biology.py": {
+      "checksum": "c701a941db24c6ded1d0d2a50c03764d"
+    },
+    "Biomni/biomni/tool/tool_description/cell_biology.py": {
+      "checksum": "46bb1281caf05b666358a8755c5dd952"
+    },
+    "Biomni/biomni/tool/tool_description/database.py": {
+      "checksum": "6a9b2c76b1567b17cfb90ac798f626cb"
+    },
+    "Biomni/biomni/tool/tool_description/genetics.py": {
+      "checksum": "0bd96d23332cbef793419a45405b9981"
+    },
+    "Biomni/biomni/tool/tool_description/genomics.py": {
+      "checksum": "a28ecf6b7e3d6b2559c670049ef535ac"
+    },
+    "Biomni/biomni/tool/tool_description/immunology.py": {
+      "checksum": "a526c4aed7d74a9341c9034379ed0e9b"
+    },
+    "Biomni/biomni/tool/tool_description/literature.py": {
+      "checksum": "cbfdc7660b3e00c1105c26ff45d99ace"
+    },
+    "Biomni/biomni/tool/tool_description/microbiology.py": {
+      "checksum": "8ec70d655df8084c4e467c8f1bdd9159"
+    },
+    "Biomni/biomni/tool/tool_description/molecular_biology.py": {
+      "checksum": "f3a30f3cb130fd567b51114447c8d1ed"
+    },
+    "Biomni/biomni/tool/tool_description/pathology.py": {
+      "checksum": "4e220bc80bc753ccc679ecbb95f1e4d9"
+    },
+    "Biomni/biomni/tool/tool_description/pharmacology.py": {
+      "checksum": "c5a4cca452c553e669c58df4166e2b40"
+    },
+    "Biomni/biomni/tool/tool_description/physiology.py": {
+      "checksum": "0fd3f9530d9d0407592ecb3327b72a19"
+    },
+    "Biomni/biomni/tool/tool_description/support_tools.py": {
+      "checksum": "1c11e9f737b2b18fdf8b1a561e3f01bf"
+    },
+    "Biomni/biomni/tool/tool_description/synthetic_biology.py": {
+      "checksum": "27bfa21de054abd0fad37a7721263868"
+    },
+    "Biomni/biomni/tool/tool_description/systems_biology.py": {
+      "checksum": "15b253f2e81e6707b6909c82d50c6b26"
+    },
+    "Biomni/biomni/tool/tool_registry.py": {
+      "checksum": "bc57650cb4cc3c10a733aa91b556b0d1"
+    },
+    "Biomni/biomni/utils.py": {
+      "checksum": "b897d0f940f60a92b2e8aec8c290b250"
+    },
+    "Biomni/biomni/version.py": {
+      "checksum": "24da7a567e2e00396623fd4d6ca6d51e"
+    },
+    "Biomni/biomni_env/README.md": {
+      "checksum": "8455fb33bc8705e1830933c8603122cb"
+    },
+    "Biomni/biomni_env/bio_env.yml": {
+      "checksum": "c945a689749432d3f4ca753a89f863dd"
+    },
+    "Biomni/biomni_env/cli_tools_config.json": {
+      "checksum": "1dbd1295e7b00aabec4a897e8f3decd5"
+    },
+    "Biomni/biomni_env/environment.yml": {
+      "checksum": "d4a429eebf6e0bad98b121f99883e519"
+    },
+    "Biomni/biomni_env/fixed_env.yml": {
+      "checksum": "a996e0a387200dc3aaafb991ba33ecc5"
+    },
+    "Biomni/biomni_env/install_cli_tools.sh": {
+      "checksum": "e0b1048b08215d47b7dc211769dfffe0"
+    },
+    "Biomni/biomni_env/install_r_packages.R": {
+      "checksum": "a53361f7a586ac54556ecc926b3f4d93"
+    },
+    "Biomni/biomni_env/new_software_v005.sh": {
+      "checksum": "fbc5df10e2789865e69cd2cd7e00e89b"
+    },
+    "Biomni/biomni_env/r_packages.yml": {
+      "checksum": "10f002a6f8948d58dad3fba92c4c3bc2"
+    },
+    "Biomni/biomni_env/setup.sh": {
+      "checksum": "991ac5c51faeed716fc0cb71997bd331"
+    },
+    "Biomni/docs/known_conflicts.md": {
+      "checksum": "011a78fc592b10bce87dba9778bc1930"
+    },
+    "Biomni/docs/mcp_integration.md": {
+      "checksum": "5964ea878a9cd0a34c3dd7df275cf3ba"
+    },
+    "Biomni/figs/biomni_logo.png": {
+      "checksum": "0a34c8c19f22764ccbb0ac86ddca229d"
+    },
+    "Biomni/license_info.md": {
+      "checksum": "55347eeb4253574e1e67e5492da1ae04"
+    },
+    "Biomni/pyproject.toml": {
+      "checksum": "15e1fc62eb4faa204d4e90eec9f5372e"
+    },
+    "Biomni/tutorials/biomni_101.ipynb": {
+      "checksum": "47e5c03ff042770922f55ca7fc7f612c"
+    },
+    "Biomni/tutorials/examples/add_mcp_server/mcp_config.yaml": {
+      "checksum": "afd570f7b19bef45a12bee1ea53ab82f"
+    },
+    "Biomni/tutorials/examples/add_mcp_server/mcp_example.ipynb": {
+      "checksum": "07a494d173d7e431ff5cc763bd7d5b0c"
+    },
+    "Biomni/tutorials/examples/cloning.ipynb": {
+      "checksum": "1cc0d277979ce7d368b8b4979bcdbd87"
+    },
+    "Biomni/tutorials/examples/expose_biomni_server/run_mcp_server.py": {
+      "checksum": "b2e2f320fac0b4d791e2509119ace6ad"
+    },
+    "Biomni/tutorials/examples/expose_biomni_server/test_mcp_server.py": {
+      "checksum": "6bec0bb89ea760d8b8533088e6b62c2a"
+    },
+    "Biomni/tutorials/examples/plentiCRISPR.txt": {
+      "checksum": "ed8319e86d050665020861ac9f47c1a5"
+    },
+    "app.py": {
+      "checksum": "e3aacbb0eeea3a2b4b78fe7780bf454e"
+    },
+    "biomni_data/biomni_data/benchmark/DbQA/train-00000-of-00001.parquet": {
+      "checksum": "bb2c17b058408fc4f229fc8cf039b6c9"
+    },
+    "biomni_data/biomni_data/benchmark/DbQA/train-00000-of-00001_sampled.parquet": {
+      "checksum": "e0714ddcb09f2e9502fff0ba2bb985ef"
+    },
+    "biomni_data/biomni_data/benchmark/DbQA/train-00000-of-00001_test.parquet": {
+      "checksum": "645122ae5fc1c8354efa65dc0aabcc30"
+    },
+    "biomni_data/biomni_data/benchmark/SeqQA/train-00000-of-00001.parquet": {
+      "checksum": "6f362f6afd32155e75873a0d3a2dafd7"
+    },
+    "biomni_data/biomni_data/benchmark/SeqQA/train-00000-of-00001_sampled.parquet": {
+      "checksum": "1eab52132bd4f5e12615849111e365d3"
+    },
+    "biomni_data/biomni_data/benchmark/SeqQA/train-00000-of-00001_test.parquet": {
+      "checksum": "0756db01373bbab66a7fb152784750f8"
+    },
+    "biomni_data/biomni_data/benchmark/hle/test_sampled_biology_medicine.parquet": {
+      "checksum": "428e9ea6a68155e2a3fbc71814cbbce0"
+    },
+    "biomni_data/biomni_data/data_lake/BindingDB_All_202409.tsv": {
+      "checksum": "d4242e73df160597d1a183b020a23932"
+    },
+    "biomni_data/biomni_data/data_lake/DepMap_CRISPRGeneDependency.csv": {
+      "checksum": "3c559fc6a5945916f591bd04f2e98f15"
+    },
+    "biomni_data/biomni_data/data_lake/DepMap_CRISPRGeneEffect.csv": {
+      "checksum": "821aa040fdb366c6204a220a5f9fe316"
+    },
+    "biomni_data/biomni_data/data_lake/DepMap_Model.csv": {
+      "checksum": "9f7b51859a22c6fbe4c8cce43ae4bdf5"
+    },
+    "biomni_data/biomni_data/data_lake/DepMap_OmicsExpressionProteinCodingGenesTPMLogp1.csv": {
+      "checksum": "f47da0b6f8f3bbd4fe62e272e53bba4f"
+    },
+    "biomni_data/biomni_data/data_lake/DisGeNET.parquet": {
+      "checksum": "0900d58fae114437d43b0c3402d194db"
+    },
+    "biomni_data/biomni_data/data_lake/McPAS-TCR.parquet": {
+      "checksum": "8378be840878f7f00cf948e10e0f20de"
+    },
+    "biomni_data/biomni_data/data_lake/Virus-Host_PPI_P-HIPSTER_2020.parquet": {
+      "checksum": "64c31138574e6d84c46fac429312d8fd"
+    },
+    "biomni_data/biomni_data/data_lake/affinity_capture-ms.parquet": {
+      "checksum": "f69fff96b7f9a63a2ac75f645718d65e"
+    },
+    "biomni_data/biomni_data/data_lake/affinity_capture-rna.parquet": {
+      "checksum": "133de9dc1d2811c4548542a0ef926059"
+    },
+    "biomni_data/biomni_data/data_lake/broad_repurposing_hub_molecule_with_smiles.parquet": {
+      "checksum": "e013d0b746b4f102f1309a2b51f8388e"
+    },
+    "biomni_data/biomni_data/data_lake/broad_repurposing_hub_phase_moa_target_info.parquet": {
+      "checksum": "48cd09829abdd713c841b8e9dd42490e"
+    },
+    "biomni_data/biomni_data/data_lake/co-fractionation.parquet": {
+      "checksum": "a2ee6817251bc8237b759062a346b54c"
+    },
+    "biomni_data/biomni_data/data_lake/czi_census_datasets_v4.parquet": {
+      "checksum": "0fc858235d8c948253ee6f75e8bff69c"
+    },
+    "biomni_data/biomni_data/data_lake/ddinter_alimentary_tract_metabolism.csv": {
+      "checksum": "11513be8e9eb147a0e1a4e76a795bdaf"
+    },
+    "biomni_data/biomni_data/data_lake/ddinter_antineoplastic.csv": {
+      "checksum": "dfa6789f8c3cb90dbddeeea011087770"
+    },
+    "biomni_data/biomni_data/data_lake/ddinter_antiparasitic.csv": {
+      "checksum": "bd5deb19f47977a090ed7b79fd6fee2e"
+    },
+    "biomni_data/biomni_data/data_lake/ddinter_blood_organs.csv": {
+      "checksum": "3bfcadec20429cafb46fbd9cdc4dd4f1"
+    },
+    "biomni_data/biomni_data/data_lake/ddinter_dermatological.csv": {
+      "checksum": "5b360769d34618268eaeab66e4f906f8"
+    },
+    "biomni_data/biomni_data/data_lake/ddinter_hormonal.csv": {
+      "checksum": "13d56d52c201a2ca8b98517fbaef408e"
+    },
+    "biomni_data/biomni_data/data_lake/ddinter_respiratory.csv": {
+      "checksum": "37d522c258fe89a5a3fb71e8499ca361"
+    },
+    "biomni_data/biomni_data/data_lake/ddinter_various.csv": {
+      "checksum": "5c425fa5d8d2a8a35b0ffb713cf9c3cc"
+    },
+    "biomni_data/biomni_data/data_lake/dosage_growth_defect.parquet": {
+      "checksum": "a00caf7d6c0ddd4d75985dcf4d7773bf"
+    },
+    "biomni_data/biomni_data/data_lake/enamine_cloud_library_smiles.pkl": {
+      "checksum": "a94046c92c47a72afb2ec5b9cf4f1bce"
+    },
+    "biomni_data/biomni_data/data_lake/evebio_assay_table.csv": {
+      "checksum": "b4ec9211a1fb7e8efa6f16fc1de5eb70"
+    },
+    "biomni_data/biomni_data/data_lake/evebio_bundle_table.csv": {
+      "checksum": "c4e22347a309e06fff273aa3964ed2d1"
+    },
+    "biomni_data/biomni_data/data_lake/evebio_compound_table.csv": {
+      "checksum": "5e04ff3792e2f7fe3132fea646f93ed1"
+    },
+    "biomni_data/biomni_data/data_lake/evebio_control_table.csv": {
+      "checksum": "0de034545390765ff3041aa9da77a704"
+    },
+    "biomni_data/biomni_data/data_lake/evebio_detailed_result_table.csv": {
+      "checksum": "10e599477fdc6913d3d8a0da6e999739"
+    },
+    "biomni_data/biomni_data/data_lake/evebio_observed_points_table.csv": {
+      "checksum": "54eb9fd493e059eef1d52d399c85330a"
+    },
+    "biomni_data/biomni_data/data_lake/evebio_summary_result_table.csv": {
+      "checksum": "82a36357c72b8f53f253ee12ffda8153"
+    },
+    "biomni_data/biomni_data/data_lake/evebio_target_table.csv": {
+      "checksum": "f86cf702514fd47943c20be10d225d6f"
+    },
+    "biomni_data/biomni_data/data_lake/gene_info.parquet": {
+      "checksum": "12d1ef614e4b40d087f630ea0af47cd5"
+    },
+    "biomni_data/biomni_data/data_lake/genebass_missense_LC_filtered.pkl": {
+      "checksum": "f06afc0648fc63ef7d7d0dca7299208a"
+    },
+    "biomni_data/biomni_data/data_lake/genebass_pLoF_filtered.pkl": {
+      "checksum": "734d2e54fc5cdc649fc87fad779f433e"
+    },
+    "biomni_data/biomni_data/data_lake/genebass_synonymous_filtered.pkl": {
+      "checksum": "459b6ccfc54af9c3956d4d5813bb487b"
+    },
+    "biomni_data/biomni_data/data_lake/genetic_interaction.parquet": {
+      "checksum": "2c3c27b62656bd33c725312a04512dd8"
+    },
+    "biomni_data/biomni_data/data_lake/go-plus.json": {
+      "checksum": "7fd64c8e2339e19e168b7f5e48f64833"
+    },
+    "biomni_data/biomni_data/data_lake/gtex_tissue_gene_tpm.parquet": {
+      "checksum": "5472fb1553eb2cebb9536277cbae6a4c"
+    },
+    "biomni_data/biomni_data/data_lake/gwas_catalog.pkl": {
+      "checksum": "a7b7f03dd9327d28c5642945b65fb83d"
+    },
+    "biomni_data/biomni_data/data_lake/hp.obo": {
+      "checksum": "caccaf0f3858c2aa01a9f1f99bfa4d78"
+    },
+    "biomni_data/biomni_data/data_lake/kg.csv": {
+      "checksum": "aac8191d4fbc5bf09cdf8c3c78b4e75f"
+    },
+    "biomni_data/biomni_data/data_lake/marker_celltype.parquet": {
+      "checksum": "3e9b2076d12f3277ed4c94e36827f73a"
+    },
+    "biomni_data/biomni_data/data_lake/miRDB_v6.0_results.parquet": {
+      "checksum": "8a992011afac2f05f9f5de41aa00c049"
+    },
+    "biomni_data/biomni_data/data_lake/miRTarBase_MicroRNA_Target_Sites.parquet": {
+      "checksum": "7cedc8a6dafa257bbd7655823c366ce3"
+    },
+    "biomni_data/biomni_data/data_lake/miRTarBase_microRNA_target_interaction.parquet": {
+      "checksum": "1e0fe11a2b54938c364113405a21c048"
+    },
+    "biomni_data/biomni_data/data_lake/miRTarBase_microRNA_target_interaction_pubmed_abtract.txt": {
+      "checksum": "f19071132f4e954e6e404c4b02ffe4de"
+    },
+    "biomni_data/biomni_data/data_lake/mousemine_m1_positional_geneset.parquet": {
+      "checksum": "c04dad69daeb55fd7cc4e68cc68280c2"
+    },
+    "biomni_data/biomni_data/data_lake/mousemine_m2_curated_geneset.parquet": {
+      "checksum": "7f92c706171d406bc8236fb06f132cef"
+    },
+    "biomni_data/biomni_data/data_lake/mousemine_m3_regulatory_target_geneset.parquet": {
+      "checksum": "ac64b04843a734758bdfe85e28dea5c7"
+    },
+    "biomni_data/biomni_data/data_lake/mousemine_m5_ontology_geneset.parquet": {
+      "checksum": "bcabf1634d3bd1b5ee46b325b138b3f9"
+    },
+    "biomni_data/biomni_data/data_lake/mousemine_m8_celltype_signature_geneset.parquet": {
+      "checksum": "b85e278b8b51cf0ba0d6b74c734363a0"
+    },
+    "biomni_data/biomni_data/data_lake/mousemine_mh_hallmark_geneset.parquet": {
+      "checksum": "52b2389ef7b9d0233f2aaa5e45ca2a84"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_c1_positional_geneset.parquet": {
+      "checksum": "a135ac14d8e9257071e4c6994085ce4a"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_c2_curated_geneset.parquet": {
+      "checksum": "09a7f08b1c9f5b7f2e68502f341bd262"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_c3_regulatory_target_geneset.parquet": {
+      "checksum": "9a9f5f8360dbac8761558f01ed48d030"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_c3_subset_transcription_factor_targets_from_GTRD.parquet": {
+      "checksum": "1c12aa540780ef663cf2d3aec76ce52f"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_c4_computational_geneset.parquet": {
+      "checksum": "2a6f88a054504bf697d9466a774a38f9"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_c5_ontology_geneset.parquet": {
+      "checksum": "05e4cba7bffa556219b3d3a47a11f0f1"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_c6_oncogenic_signature_geneset.parquet": {
+      "checksum": "84145181ae1be8c39a1c7991d542fe52"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_c7_immunologic_signature_geneset.parquet": {
+      "checksum": "5fe73c1373c6d7284f7f62e2b899df38"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_c8_celltype_signature_geneset.parquet": {
+      "checksum": "a68fd03ba108ad5c8ef6cfa1deba1555"
+    },
+    "biomni_data/biomni_data/data_lake/msigdb_human_h_hallmark_geneset.parquet": {
+      "checksum": "16e3f4d994f9904ec37d749d49ac6f21"
+    },
+    "biomni_data/biomni_data/data_lake/omim.parquet": {
+      "checksum": "1007489ab826da47601637230b4d3d4a"
+    },
+    "biomni_data/biomni_data/data_lake/proteinatlas.tsv": {
+      "checksum": "8a61daaf80c7d9c14b15f8b8ba433beb"
+    },
+    "biomni_data/biomni_data/data_lake/proximity_label-ms.parquet": {
+      "checksum": "60129216be109e28f1681088c5f33b43"
+    },
+    "biomni_data/biomni_data/data_lake/reconstituted_complex.parquet": {
+      "checksum": "905b51e2cfb16ff0f7a72a0191243aa7"
+    },
+    "biomni_data/biomni_data/data_lake/sgRNA_KO_SP_human.txt": {
+      "checksum": "237786274cfa7e3c6e0d0a2a3a72b66c"
+    },
+    "biomni_data/biomni_data/data_lake/sgRNA_KO_SP_mouse.txt": {
+      "checksum": "1820d37a195030d0766ff3d839fb1d5b"
+    },
+    "biomni_data/biomni_data/data_lake/synthetic_growth_defect.parquet": {
+      "checksum": "024811c09bdb1aabe3e1480d926e349c"
+    },
+    "biomni_data/biomni_data/data_lake/synthetic_lethality.parquet": {
+      "checksum": "ded82506dee621f4a5cd7404e08ed795"
+    },
+    "biomni_data/biomni_data/data_lake/synthetic_rescue.parquet": {
+      "checksum": "040a03858543181a5dc4d301a928acc4"
+    },
+    "biomni_data/biomni_data/data_lake/two-hybrid.parquet": {
+      "checksum": "d595ee0714d7ca3acca52512a208fd75"
+    },
+    "biomni_data/biomni_data/data_lake/txgnn_name_mapping.pkl": {
+      "checksum": "03c724eaef6f4d78b86abc9d14cc98ba"
+    },
+    "biomni_data/biomni_data/data_lake/txgnn_prediction.pkl": {
+      "checksum": "22766cc3bb31c266ce67f9f1cd27bb70"
+    },
+    "biomni_data/biomni_data/data_lake/variant_table.parquet": {
+      "checksum": "10b5b0bc7d877ef6028f01abe5995ef4"
+    },
+    "biomni_session.py": {
+      "checksum": "8ee188adf839f1044adf45465f37c7e9"
+    }
+  }
+}
