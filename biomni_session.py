@@ -2,7 +2,7 @@
 
 import os
 from dotenv import load_dotenv
-from biomni.agent import A1
+from Biomni.biomni.agent import A1
 from langchain_openai import AzureChatOpenAI
 from langchain_core.messages import HumanMessage
 
@@ -91,7 +91,7 @@ class BiomniSession:
                 
                 for s in self.agent.app.stream(inputs, stream_mode='values', config=self.config):
                     message_obj = s['messages'][-1]
-                    from biomni.utils import pretty_print
+                    from Biomni.biomni.utils import pretty_print
                     out = pretty_print(message_obj)
                     conversation_log.append(out)
                     final_message = message_obj
