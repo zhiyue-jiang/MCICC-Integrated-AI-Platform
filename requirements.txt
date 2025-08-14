@@ -1,0 +1,10 @@
+shiny>=0.6.0
+biomni
+rdkit-pypi
+numpy
+pandas
+python-dotenv
+langchain-openai
+langchain-core
+matplotlib
+plotly
