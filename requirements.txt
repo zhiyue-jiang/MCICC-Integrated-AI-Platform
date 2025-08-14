@@ -1,10 +1,49 @@
+# Core Shiny framework
 shiny>=0.6.0
-biomni
-rdkit-pypi
+
+# Environment configuration
+python-dotenv
+
+# LangChain ecosystem
+langchain-anthropic
+langchain-core
+langchain-google-genai
+langchain-ollama
+langchain-openai
+langchain-text-splitters
+langgraph
+
+# MCP (Model Context Protocol)
+mcp
+
+# AI/ML APIs
+openai
+
+# Data science
 numpy
 pandas
-python-dotenv
-langchain-openai
-langchain-core
-matplotlib
-plotly
+
+# Bioinformatics
+biopython
+scanpy
+gget
+gseapy
+
+# Machine Learning
+torch
+
+# Web scraping and utilities
+beautifulsoup4
+requests
+tqdm
+PyPDF2
+googlesearch-python
+
+# Data validation
+pydantic
+
+# Standard library packages (these are built-in, don't need to be installed):
+# argparse, ast, asyncio, collections, contextlib, datetime, difflib
+# enum, functools, glob, importlib, inspect, io, json, multiprocessing
+# os, pathlib, pickle, random, re, signal, subprocess, sys, tempfile
+# time, traceback, typing, urllib, zipfile
