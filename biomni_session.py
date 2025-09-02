@@ -1,5 +1,4 @@
-# biomni_session.py - Enhanced version with better error handling
-
+# biomni_session.py
 import os
 from dotenv import load_dotenv
 from Biomni.biomni.agent import A1
