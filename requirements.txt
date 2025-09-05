@@ -37,4 +37,3 @@ googlesearch-python
 
 #Data validation
 pydantic
-EOF
