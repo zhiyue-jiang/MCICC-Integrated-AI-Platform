@@ -18,39 +18,32 @@ class BiomniSession:
         return cls._instance
     
     def initialize(self):
-    try:
-        print("🚀 Initializing Biomni agent...")
-        
-        load_dotenv()
-        
-        # Set API key directly
-        EMBEDDED_API_KEY = 'IDFS8XPknvWNngP5POBOeJzqPkaFKmjT'
-        os.environ['AZURE_OPENAI_API_KEY'] = EMBEDDED_API_KEY
-        
-        # Initialize model
-        model = AzureChatOpenAI(
-            azure_endpoint='https://iapi-test.merck.com/gpt/libsupport',
-            azure_deployment='gpt-5-mini-2025-08-07',
-            openai_api_version='2023-05-15',
-            api_key="IDFS8XPknvWNngP5POBOeJzqPkaFKmjT",
-        )
-        
+        """Initialize the MCICC agent"""
+        try:
+            print("🚀 Initializing agent...")
             
-            # Initialize model
+            load_dotenv()
+            
+            # Setup API key
+            EMBEDDED_API_KEY = 'IDFS8XPknvWNngP5POBOeJzqPkaFKmjT'
+            os.environ['AZURE_OPENAI_API_KEY'] = EMBEDDED_API_KEY
+            
+            #Initialize model
             model = AzureChatOpenAI(
                 azure_endpoint='https://iapi-test.merck.com/gpt/libsupport',
                 azure_deployment='gpt-5-mini-2025-08-07',
                 openai_api_version='2023-05-15',
+                api_key=EMBEDDED_API_KEY,
             )
             
-            # Initialize agent with your data path
+            #Initialize agent
             data_path = "./biomni_data"
             
             self.agent = A1(
                 path=data_path,
-                llm='gpt-4o-2024-11-20',
+                llm='gpt-5-mini-2025-08-07',
                 base_url=None,
-                api_key=os.getenv('AZURE_OPENAI_API_KEY'),
+                api_key=EMBEDDED_API_KEY,
             )
             self.agent.llm = model
             
@@ -59,11 +52,11 @@ class BiomniSession:
             self.initialized = True
             self.conversation_count = 0
             
-            print("✅ Biomni agent initialized successfully")
+            print("✅ MCICC agent initialized successfully")
             return True
             
         except Exception as e:
-            print(f"❌ Failed to initialize Biomni agent: {str(e)}")
+            print(f"❌ Failed to initialize agent: {str(e)}")
             import traceback
             traceback.print_exc()
             self.initialized = False
@@ -79,13 +72,11 @@ class BiomniSession:
             
             if is_first_message or self.conversation_count == 0:
                 print("🎯 Using agent.go() for first message")
-                # Use the agent's go() method for first message
                 log, final_response = self.agent.go(message)
                 self.conversation_count += 1
                 return True, log, final_response
             else:
                 print("🔄 Using stream interface for continuation")
-                # For continuing conversation, use the stream interface
                 current_state = self.agent.app.get_state(self.config)
                 current_messages = current_state.values.get('messages', [])
                 current_messages.append(HumanMessage(content=message))
