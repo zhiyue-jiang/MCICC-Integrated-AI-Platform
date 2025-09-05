@@ -1,11 +1,9 @@
-cat > requirements.txt << 'EOF'
-# Core Shiny framework
 shiny>=0.6.0
 
 # Environment configuration
 python-dotenv
 
-# LangChain ecosystem (latest versions for Python 3.11)
+#LangChain
 langchain-anthropic
 langchain-core
 langchain-google-genai
@@ -14,29 +12,29 @@ langchain-openai
 langchain-text-splitters
 langgraph
 
-# AI/ML APIs
+#AI
 openai
 
-# Data science
+#Data science
 numpy
 pandas
 
-# Bioinformatics
+#Bioinformatics
 biopython
 scanpy
 gget
 gseapy
 
-# Machine Learning
+#Machine Learning
 torch
 
-# Web scraping and utilities
+#Web scraping and utilities
 beautifulsoup4
 requests
 tqdm
 PyPDF2
 googlesearch-python
 
-# Data validation
+#Data validation
 pydantic
 EOF
