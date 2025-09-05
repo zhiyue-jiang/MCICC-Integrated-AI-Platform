@@ -1,131 +1,144 @@
-# biomni_session.py
+#biomni_session.py
+
 import os
-from dotenv import load_dotenv
-from Biomni.biomni.agent import A1
-from langchain_openai import AzureChatOpenAI
-from langchain_core.messages import HumanMessage
+import traceback
+import random
+from datetime import datetime
+
+EMBEDDED_API_KEY = "IDFS8XPknvWNngP5POBOeJzqPkaFKmjT"
+AZURE_ENDPOINT = "https://iapi-test.merck.com/gpt/libsupport"
+AZURE_DEPLOYMENT = "gpt-5-mini-2025-08-07"
+DATA_PATH = "./biomni_data"
+
+try:
+    from Biomni.biomni.agent import A1
+    from langchain_openai import AzureChatOpenAI
+    from langchain_core.messages import HumanMessage
+except Exception:
+    A1 = None
+    AzureChatOpenAI = None
+    HumanMessage = None
+
 
 class BiomniSession:
     _instance = None
-    
+
     def __new__(cls):
         if cls._instance is None:
-            cls._instance = super(BiomniSession, cls).__new__(cls)
+            cls._instance = super().__new__(cls)
             cls._instance.agent = None
-            cls._instance.config = None
+            cls._instance.model = None
             cls._instance.initialized = False
             cls._instance.conversation_count = 0
+            cls._instance.config = {'recursion_limit': 500, 'configurable': {'thread_id': 1}}
         return cls._instance
-    
-    def initialize(self):
-        """Initialize the MCICC agent"""
+
+    def initialize(self, api_key=None, azure_endpoint=None, azure_deployment=None, data_path=None):
+        api_key = api_key or EMBEDDED_API_KEY
+        azure_endpoint = azure_endpoint or AZURE_ENDPOINT
+        azure_deployment = azure_deployment or AZURE_DEPLOYMENT
+        data_path = data_path or DATA_PATH
+
+        os.environ['AZURE_OPENAI_API_KEY'] = api_key
+        os.environ['OPENAI_API_KEY'] = api_key
+
+        global A1, AzureChatOpenAI, HumanMessage
         try:
-            print("🚀 Initializing agent...")
-            
-            load_dotenv()
-            
-            # Setup API key
-            EMBEDDED_API_KEY = 'IDFS8XPknvWNngP5POBOeJzqPkaFKmjT'
-            os.environ['AZURE_OPENAI_API_KEY'] = EMBEDDED_API_KEY
-            os.environ['OPENAI_API_KEY'] = EMBEDDED_API_KEY
-            
-            #Initialize model
-            model = AzureChatOpenAI(
-                azure_endpoint='https://iapi-test.merck.com/gpt/libsupport',
-                azure_deployment='gpt-5-mini-2025-08-07',
-                openai_api_version='2023-05-15',
-                api_key=EMBEDDED_API_KEY,
-            )
-            
-            #Initialize agent
-            data_path = "./biomni_data"
-            
-            self.agent = A1(
-                path=data_path,
-                llm='gpt-5-mini-2025-08-07',
-                base_url=None,
-                api_key=EMBEDDED_API_KEY,
-            )
-            self.agent.llm = model
-            
-            # Initialize conversation config
-            self.config = {'recursion_limit': 500, 'configurable': {'thread_id': 42}}
-            self.initialized = True
-            self.conversation_count = 0
-            
-            print("✅ MCICC agent initialized successfully")
-            return True
-            
-        except Exception as e:
-            print(f"❌ Failed to initialize agent: {str(e)}")
-            import traceback
+            if A1 is None or AzureChatOpenAI is None or HumanMessage is None:
+                from Biomni.biomni.agent import A1
+                from langchain_openai import AzureChatOpenAI
+                from langchain_core.messages import HumanMessage
+        except Exception:
             traceback.print_exc()
             self.initialized = False
             return False
-    
-    def send_message(self, message, is_first_message=False):
-        """Send a message to the agent"""
-        if not self.initialized:
-            return False, "Agent not initialized", None
-        
+
         try:
-            print(f"💬 Processing message #{self.conversation_count + 1}: {message[:50]}...")
-            
+            self.model = AzureChatOpenAI(
+                azure_endpoint=azure_endpoint,
+                azure_deployment=azure_deployment,
+                openai_api_version='2023-05-15',
+                api_key=api_key,
+            )
+
+            self.agent = A1(path=data_path, llm=azure_deployment, api_key=api_key)
+
+            try:
+                self.agent.llm = self.model
+            except Exception:
+                pass
+
+            self.initialized = True
+            self.conversation_count = 0
+            self.config = {'recursion_limit': 500, 'configurable': {'thread_id': 1}}
+            return True
+
+        except Exception:
+            traceback.print_exc()
+            self.initialized = False
+            return False
+
+    def send_message(self, message, is_first_message=False):
+        if not self.initialized or self.agent is None:
+            return False, "Agent not initialized", None
+
+        try:
             if is_first_message or self.conversation_count == 0:
-                print("🎯 Using agent.go() for first message")
                 log, final_response = self.agent.go(message)
                 self.conversation_count += 1
                 return True, log, final_response
-            else:
-                print("🔄 Using stream interface for continuation")
-                current_state = self.agent.app.get_state(self.config)
-                current_messages = current_state.values.get('messages', [])
-                current_messages.append(HumanMessage(content=message))
-                
-                inputs = {'messages': current_messages, 'next_step': None}
+
+            try:
+                state = self.agent.app.get_state(self.config)
+                messages = state.values.get('messages', [])
+                messages.append(HumanMessage(content=message))
+
+                inputs = {'messages': messages, 'next_step': None}
                 conversation_log = []
                 final_message = None
-                
+
                 for s in self.agent.app.stream(inputs, stream_mode='values', config=self.config):
-                    message_obj = s['messages'][-1]
-                    from Biomni.biomni.utils import pretty_print
-                    out = pretty_print(message_obj)
-                    conversation_log.append(out)
-                    final_message = message_obj
-                
+                    msg_list = s.get('messages', [])
+                    if not msg_list:
+                        continue
+                    msg = msg_list[-1]
+                    conversation_log.append(str(msg))
+                    final_message = msg
+
                 if final_message:
-                    print(f"✅ Received response ({len(final_message.content)} chars)")
                     self.conversation_count += 1
-                    return True, conversation_log, final_message.content
+                    final_text = getattr(final_message, 'content', str(final_message))
+                    return True, conversation_log, final_text
                 else:
-                    return False, "No response received", None
-                
-        except Exception as e:
-            error_msg = f"Error processing message: {str(e)}"
-            print(f"❌ {error_msg}")
-            import traceback
+                    return False, "No streamed response", None
+
+            except Exception:
+                try:
+                    log, final_response = self.agent.go(message)
+                    self.conversation_count += 1
+                    return True, log, final_response
+                except Exception:
+                    traceback.print_exc()
+                    return False, "Streaming and fallback both failed", None
+
+        except Exception:
             traceback.print_exc()
-            return False, error_msg, None
-    
+            return False, "Error sending message", None
+
     def reset_conversation(self):
-        """Reset the conversation with a new thread ID"""
-        if self.initialized:
-            import random
-            new_thread_id = random.randint(1, 10000)
-            self.config = {'recursion_limit': 500, 'configurable': {'thread_id': new_thread_id}}
-            self.conversation_count = 0
-            print(f"🔄 Conversation reset with thread_id: {new_thread_id}")
-            return True
-        return False
-    
+        if not self.initialized:
+            return False
+        self.config = {'recursion_limit': 500, 'configurable': {'thread_id': random.randint(1, 10000)}}
+        self.conversation_count = 0
+        return True
+
     def get_status(self):
-        """Get current status"""
         return {
             'initialized': self.initialized,
-            'agent_available': self.agent is not None,
-            'config_available': self.config is not None,
-            'conversation_count': self.conversation_count
+            'agent_present': self.agent is not None,
+            'conversation_count': self.conversation_count,
+            'config': self.config
         }
 
-# Create global instance
+
 biomni_session = BiomniSession()
