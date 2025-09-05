@@ -27,6 +27,7 @@ class BiomniSession:
             # Setup API key
             EMBEDDED_API_KEY = 'IDFS8XPknvWNngP5POBOeJzqPkaFKmjT'
             os.environ['AZURE_OPENAI_API_KEY'] = EMBEDDED_API_KEY
+            os.environ['OPENAI_API_KEY'] = EMBEDDED_API_KEY
             
             #Initialize model
             model = AzureChatOpenAI(
