@@ -1,33 +1,31 @@
+cat > requirements.txt << 'EOF'
 # Core Shiny framework
 shiny>=0.6.0
 
 # Environment configuration
 python-dotenv
 
-# LangChain ecosystem (use older versions compatible with Python 3.9)
-langchain-anthropic<0.3.0
-langchain-core<0.3.0
-langchain-google-genai<2.0.0
-langchain-ollama<0.3.0
-langchain-openai<0.3.0
-langchain-text-splitters<0.3.0
-langgraph<0.6.0
-
-# Remove mcp - not available
-# mcp
+# LangChain ecosystem (latest versions for Python 3.11)
+langchain-anthropic
+langchain-core
+langchain-google-genai
+langchain-ollama
+langchain-openai
+langchain-text-splitters
+langgraph
 
 # AI/ML APIs
-openai<2.0.0
+openai
 
 # Data science
-numpy<2.0.0
+numpy
 pandas
 
 # Bioinformatics
 biopython
-# scanpy  # Might be too heavy, add back if needed
+scanpy
 gget
-# gseapy  # Might require newer Python, add back if needed
+gseapy
 
 # Machine Learning
 torch
@@ -40,4 +38,5 @@ PyPDF2
 googlesearch-python
 
 # Data validation
-pydantic<2.0.0
+pydantic
+EOF
