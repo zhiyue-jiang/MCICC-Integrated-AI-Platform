@@ -18,22 +18,28 @@ class BiomniSession:
         return cls._instance
     
     def initialize(self):
-        """Initialize the Biomni agent"""
-        try:
-            print("🚀 Initializing Biomni agent...")
-            
-            load_dotenv()
-            
-            # Setup API key
-            EMBEDDED_API_KEY = 'IDFS8XPknvWNngP5POBOeJzqPkaFKmjT'
-            if not os.environ.get('AZURE_OPENAI_API_KEY'):
-                if EMBEDDED_API_KEY and EMBEDDED_API_KEY != 'IDFS8XPknvWNngP5POBOeJzqPkaFKmjT':
-                    os.environ['AZURE_OPENAI_API_KEY'] = EMBEDDED_API_KEY
+    try:
+        print("🚀 Initializing Biomni agent...")
+        
+        load_dotenv()
+        
+        # Set API key directly
+        EMBEDDED_API_KEY = 'IDFS8XPknvWNngP5POBOeJzqPkaFKmjT'
+        os.environ['AZURE_OPENAI_API_KEY'] = EMBEDDED_API_KEY
+        
+        # Initialize model
+        model = AzureChatOpenAI(
+            azure_endpoint='https://iapi-test.merck.com/gpt/libsupport',
+            azure_deployment='gpt-5-mini-2025-08-07',
+            openai_api_version='2023-05-15',
+            api_key="IDFS8XPknvWNngP5POBOeJzqPkaFKmjT",
+        )
+        
             
             # Initialize model
             model = AzureChatOpenAI(
                 azure_endpoint='https://iapi-test.merck.com/gpt/libsupport',
-                azure_deployment='gpt-4o-2024-11-20',
+                azure_deployment='gpt-5-mini-2025-08-07',
                 openai_api_version='2023-05-15',
             )
             
