@@ -140,5 +140,123 @@ class BiomniSession:
             'config': self.config
         }
 
+import os
+import json
+import hashlib
+import time
+
+DATA_DIR = "./biomni_data"
+MANIFEST_FILE = os.path.join(DATA_DIR, "manifest.json")
+LOCK_FILE = os.path.join(DATA_DIR, ".downloading.lock")
+COMPLETE_FILE = os.path.join(DATA_DIR, ".download_complete")
+
+def ensure_data_dir():
+    os.makedirs(DATA_DIR, exist_ok=True)
+
+def read_manifest():
+    if not os.path.exists(MANIFEST_FILE):
+        return {}
+    try:
+        with open(MANIFEST_FILE, "r") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def write_manifest(m):
+    with open(MANIFEST_FILE, "w") as f:
+        json.dump(m, f, indent=2)
+
+def file_checksum(path, chunk_size=8192):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(chunk_size), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+def wait_for_lock(timeout=300, poll=1.0):
+    start = time.time()
+    while os.path.exists(LOCK_FILE):
+        if time.time() - start > timeout:
+            return False
+        time.sleep(poll)
+    return True
+
+def download_missing_files(required_files, download_fn, force_refresh=False):
+    ensure_data_dir()
+
+    if force_refresh and os.path.exists(COMPLETE_FILE):
+        os.remove(COMPLETE_FILE)
+
+    if os.path.exists(COMPLETE_FILE) and not force_refresh:
+        # completed previously; do a quick existence check and return
+        missing = [f for f in required_files if not os.path.exists(os.path.join(DATA_DIR, f))]
+        if not missing:
+            return True, "All files present"
+        # else fall through to standard download logic
+
+    # Acquire lock by creating lock file; if exists, wait
+    try:
+        # fast path: try to create lock file atomically
+        fd = os.open(LOCK_FILE, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        os.close(fd)
+        we_own_lock = True
+    except FileExistsError:
+        we_own_lock = False
+
+    if not we_own_lock:
+        ok = wait_for_lock()
+        if not ok:
+            return False, "Timeout waiting for existing download to finish"
+        # Another process finished; check for completeness
+        if os.path.exists(COMPLETE_FILE):
+            return True, "Files ready after waiting"
+        # If not complete, try to acquire lock again
+        try:
+            fd = os.open(LOCK_FILE, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            os.close(fd)
+            we_own_lock = True
+        except FileExistsError:
+            return False, "Could not acquire lock"
+
+    try:
+        manifest = read_manifest()
+        updated = False
+        for fname in required_files:
+            dest = os.path.join(DATA_DIR, fname)
+            if os.path.exists(dest):
+                rec = manifest.get(fname)
+                if rec:
+                    # assume present and valid
+                    continue
+                try:
+                    checksum = file_checksum(dest)
+                    manifest[fname] = {"checksum": checksum, "size": os.path.getsize(dest)}
+                    updated = True
+                    continue
+                except Exception:
+                    pass
+            # download the file using your downloader
+            ok = download_fn(fname, dest)
+            if not ok:
+                return False, f"Failed to download {fname}"
+            checksum = file_checksum(dest)
+            manifest[fname] = {"checksum": checksum, "size": os.path.getsize(dest)}
+            updated = True
+
+        if updated:
+            write_manifest(manifest)
+
+        # write marker for completion
+        with open(COMPLETE_FILE, "w") as f:
+            f.write("done")
+        return True, "Downloaded or validated files"
+
+    finally:
+        try:
+            os.remove(LOCK_FILE)
+        except Exception:
+            pass
+
+
 
 biomni_session = BiomniSession()
