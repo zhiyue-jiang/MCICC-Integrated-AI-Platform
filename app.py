@@ -16,7 +16,7 @@ biomni_session = BiomniSession()
 
 app_ui = ui.page_fluid(
     ui.div(
-        ui.h1("MCICC Integrated AI Platform", class_="text-center mb-4"),
+        ui.h1("Integrated AI Platform", class_="text-center mb-4"),
         ui.row(
             ui.column(
                 4,
