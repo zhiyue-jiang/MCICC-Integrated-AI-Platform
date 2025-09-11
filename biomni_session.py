@@ -3,7 +3,7 @@ import traceback
 import random
 from datetime import datetime
 
-EMBEDDED_API_KEY = "XXXXXXXXXXXXXXX"
+EMBEDDED_API_KEY = "aJjnb4X80rE0GWSYAcf5hpwKia8omZ2o"
 AZURE_ENDPOINT = "https://iapi-test.merck.com/gpt/libsupport"
 AZURE_DEPLOYMENT = "gpt-5-mini-2025-08-07"
 DATA_PATH = "./biomni_data"
